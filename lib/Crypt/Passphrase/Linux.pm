@@ -5,6 +5,7 @@ use warnings;
 
 use parent 'Crypt::Passphrase::Encoder';
 
+use Carp 'croak';
 use Crypt::Passwd::XS 'crypt';
 use MIME::Base64 qw/encode_base64 decode_base64/;
 
@@ -25,7 +26,7 @@ my %salt_size = (
 sub new {
 	my ($class, %args) = @_;
 	my $type_name = $args{type} // 'sha512';
-	my $type = $identifier_for{$type_name} // die "No such crypt type $type_name";
+	my $type = $identifier_for{$type_name} // croak "No such crypt type $type_name";
 	my $salt_size = $salt_size{$type_name};
 	my $rounds = $args{rounds} // 656_000;
 
