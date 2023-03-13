@@ -40,7 +40,8 @@ sub new {
 sub hash_password {
 	my ($self, $password) = @_;
 	my $salt = $self->random_bytes($self->{salt_size});
-	my $settings = sprintf '$%s$rounds=%d$%s', $self->{type}, $self->{rounds}, encode_base64($salt);
+	(my $encoded_salt = encode_base64($salt, "")) =~ tr{A-Za-z0-9+/=}{./A-Za-z0-9}d;
+	my $settings = sprintf '$%s$rounds=%d$%s', $self->{type}, $self->{rounds}, $encoded_salt;
 	return Crypt::Passwd::XS::crypt($password, $settings);
 }
 
