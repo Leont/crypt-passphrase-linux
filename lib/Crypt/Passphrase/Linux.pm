@@ -58,7 +58,7 @@ my $regex = qr/ ^ \$ (1|5|6|apr1) \$ (?: rounds= ([0-9]+) \$ )? ([^\$]*) \$ [^\$
 
 sub needs_rehash {
 	my ($self, $hash) = @_;
-	my ($type, $rounds, $salt) = $hash =~ $regex or return 0;
+	my ($type, $rounds, $salt) = $hash =~ $regex or return 1;
 	$rounds = 5000 if $rounds eq '';
 	return $type ne $self->{type} || $rounds != $self->{rounds} || length $salt != $self->{salt_size} * 4 / 3;
 }
