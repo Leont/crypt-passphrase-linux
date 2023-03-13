@@ -45,6 +45,11 @@ sub hash_password {
 	return Crypt::Passwd::XS::crypt($password, $settings);
 }
 
+sub accepts_hash {
+	my ($self, $hash) = @_;
+	return $hash =~ / \A [.\/A-Za-z0-9]{13} \z /x || $self->SUPER::accepts_hash($hash);
+}
+
 sub crypt_subtypes {
 	return values %identifier_for;
 }
@@ -60,8 +65,7 @@ sub needs_rehash {
 
 sub verify_password {
 	my ($class, $password, $hash) = @_;
-	my ($settings) = $hash =~ /^(.*)\$[^\$]*/;
-	my $new_hash = Crypt::Passwd::XS::crypt($password, $settings);
+	my $new_hash = Crypt::Passwd::XS::crypt($password, $hash);
 	return $class->secure_compare($hash, $new_hash);
 }
 

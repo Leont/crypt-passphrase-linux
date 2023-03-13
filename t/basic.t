@@ -32,5 +32,9 @@ my $hash4 = '$5$rounds=80000$wnsT7Yr92oJoP28r$cKhJImk5mfuSKV9b3mumNzlbstFUplKtQX
 ok($passphrase->verify_password($password, $hash4));
 ok($passphrase->needs_rehash($hash4));
 
+my $hash5 = 'tesvSclXGCVNk';
+ok($passphrase->verify_password('test1234', $hash5));
+ok($passphrase->needs_rehash($hash5));
+
 done_testing;
 
