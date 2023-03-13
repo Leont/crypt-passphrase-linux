@@ -73,6 +73,14 @@ sub verify_password {
 
 1;
 
+=head1 SYNOPSIS
+
+ my $passphrase = Crypt::Passphrase->new(encoder => {
+   module => 'Linux',
+   type   => 'sha512',
+   rounds => 656_000,
+ });
+
 =head1 DESCRIPTION
 
 This class implements a Crypt::Passphrase encoder compatible with Linux' crypt.
