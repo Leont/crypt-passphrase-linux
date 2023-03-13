@@ -3,7 +3,7 @@ package Crypt::Passphrase::Linux;
 use strict;
 use warnings;
 
-use parent 'Crypt::Passphrase::Encoder';
+use Crypt::Passphrase -encoder;
 
 use Carp 'croak';
 use Crypt::Passwd::XS 'crypt';
