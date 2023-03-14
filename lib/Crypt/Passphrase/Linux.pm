@@ -7,7 +7,7 @@ use Crypt::Passphrase -encoder;
 
 use Carp 'croak';
 use Crypt::Passwd::XS 'crypt';
-use MIME::Base64 qw/encode_base64 decode_base64/;
+use MIME::Base64 qw/encode_base64/;
 
 my %identifier_for = (
 	md5        => '1',
