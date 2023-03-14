@@ -6,11 +6,14 @@ use warnings;
 use Test::More;
 
 use Crypt::Passwd::XS 'crypt';
-use Crypt::Passphrase::Linux;
+use Crypt::Passphrase;
 
-my $passphrase = Crypt::Passphrase::Linux->new(
-	rounds => 100_000,
-	type   => 'sha512',
+my $passphrase = Crypt::Passphrase->new(
+	encoder => {
+		module => 'Linux',
+		rounds => 100_000,
+		type   => 'sha512',
+	},
 );
 
 my $password = 'password';
