@@ -1,6 +1,7 @@
 Revision history for Crypt-Passphrase-Linux
 
 {{$NEXT}}
+          - Correct Crypt::Passphrase dependency
 
 0.002     2023-03-14 23:47:48+01:00 Europe/Amsterdam
           - Correctly encode salt in hash_password
